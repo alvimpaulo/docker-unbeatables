@@ -14,6 +14,6 @@ USER unbeatables
 RUN wget -c https://gist.githubusercontent.com/alvimpaulo/2995da9628e7bb17e9951315ebca40b4/raw/4ea5571d35fdbe84aa0792a556ec4fbd238630d3/ALRobotModel.xml -O /home/unbeatables/.config/naoqi/ALRobotModel.xml
 
 RUN qitoolchain create v6-sdk /nao/devtools/naoqi-sdk-2.8.5.10-linux64/toolchain.xml
-RUN cd /nao/ && qibuild add-config v6-ctc -t v6-ctc --default
+RUN cd /nao/ && qibuild add-config v6-sdk -t v6-sdk --default
 
 CMD [ "/nao/devtools/naoqi-sdk-2.8.5.10-linux64/naoqi" ]
