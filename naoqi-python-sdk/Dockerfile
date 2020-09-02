@@ -21,4 +21,4 @@ RUN pip install -r /requirements.txt
 ENV PYTHONPATH=${PYTHONPATH}:/nao/devtools/pynaoqi-python2.7-2.8.5.10-linux64-20181203_200915/lib/python2.7/site-packages
 ENV QI_SDK_PREFIX=/nao/devtools/pynaoqi-python2.7-2.8.5.10-linux64-20181203_200915
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["tail", "-f", "/dev/null"]

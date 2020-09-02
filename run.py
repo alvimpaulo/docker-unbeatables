@@ -24,10 +24,14 @@ if(args.operation== "rm-all"):
 #docker run a container
 if(args.operation == "run"):
     if(args.container_name == "vrep"):
-        subprocess.call('sudo docker run --rm --net=host --env="DISPLAY" -d --name vrep --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -v "{}/workspace/:/nao/workspace/" alvimpaulo/vrep:4.1'.format(nao_folder_location), shell=True)
+        subprocess.call('sudo docker run --rm --net=host --env="DISPLAY" -d --name vrep --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -v "{}/workspace/:/nao/workspace/"  alvimpaulo/vrep:4.1'.format(nao_folder_location), shell=True)
     elif(args.container_name == "naoqi-sdk"):
         subprocess.call(
-            'sudo docker run --rm -p 9600:9559 -e NAO_CODE_LOCATION="/nao/workspace/UnBeatables/v6_competitionCode/" -d -v "{}/workspace/:/nao/workspace/" --name naoqi-sdk alvimpaulo/naoqi-sdk:2.8.5'.format(nao_folder_location), shell=True)
+            'sudo docker run --rm -p 9600:9559 -e NAO_CODE_LOCATION="/nao/workspace/UnBeatables/v6_competitionCode/" -d -v "{}/workspace/:/nao/workspace/"  -v /dev/:/dev/ --name naoqi-sdk alvimpaulo/naoqi-sdk:2.8.5'.format(nao_folder_location), shell=True)
+    elif(args.container_name == "naoqi-python-sdk"):
+        subprocess.call(
+            'sudo docker run --rm -e NAO_CODE_LOCATION="/nao/workspace/UnBeatables/v6_competitionCode/" -d -v "{}/workspace/:/nao/workspace/"  -v /dev/:/dev/ --name naoqi-python-sdk alvimpaulo/naoqi-python-sdk:2.8.5'.format(nao_folder_location), shell=True)
+    
     else:
         subprocess.call('sudo docker run --rm -d -v "{}/workspace/:/nao/workspace/" --name {} alvimpaulo/{}:2.8.5'.format(
             nao_folder_location, args.container_name, args.container_name), shell=True)
@@ -51,5 +55,4 @@ if(args.operation == "ssh"):
 
 #TODO: remover containers parados
 #TODO: parar os containers
-
 #TODO: start container
